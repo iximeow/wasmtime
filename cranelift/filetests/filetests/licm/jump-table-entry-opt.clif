@@ -1,0 +1,21 @@
+test compile
+set is_pic
+set opt_level=speed_and_size
+target x86_64
+
+function u0:0(i64) system_v {
+    jt0 = jump_table [block2, block5]
+
+                                block0(v0: i64):
+@0000                               br_table.i64 v0, block7, jt0
+
+                                block2:
+@0001                               return
+
+                                block5:
+@0000                               v18 = iconst.i32 0
+@0000                               jump block5
+
+                                block7:
+@0000                               trap user65535
+}
