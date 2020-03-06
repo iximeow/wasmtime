@@ -43,3 +43,21 @@ block0(v0: f32, v1: f64, v2: i64, v3: i64):
     return v1
 }
 ; check: function %ret_val_float(f32 [%xmm0], f64 [%xmm1], i64 [%r8], i64 [%r9], i64 fp [%rbp]) -> f64 [%xmm0], i64 fp [%rbp] windows_fastcall {
+
+function %internal_stack_arg_function_call() -> i64 windows_fastcall {
+  fn0 = %foo(i64, i64, i64, i64, i64, i64, i64, i64, i64) -> i64
+  fn1 = %foo2(i64, i64, i64, i64, i64, i64, i64, i64, i64, i64) -> i64
+block0:
+    v0 = iconst.i64 1
+    v1 = iconst.i64 1
+    v2 = iconst.i64 1
+    v3 = iconst.i64 1
+    v4 = iconst.i64 1
+    v5 = iconst.i64 1
+    v6 = iconst.i64 1
+    v7 = iconst.i64 1
+    v8 = iconst.i64 1
+    v9 = call fn0(v0, v1, v2, v3, v4, v5, v6, v7, v8)
+    v10 = call fn1(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
+    return v10
+}
